@@ -7,7 +7,6 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
-#include <stdlib.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
@@ -88,7 +87,7 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
-int random_index = rand() % (sizeof(anim_imgs) / sizeof(anim_imgs[0]));
+int random_index = sys_rand_get() % (sizeof(anim_imgs) / sizeof(anim_imgs[0]));
 const void *random_image = anim_imgs[random_index];
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
