@@ -89,7 +89,9 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
-static int random_index = rand() % (1,(sizeof(anim_imgs) / sizeof(anim_imgs[0])));
+const int r = rand();
+
+int random_index = r % (sizeof(anim_imgs) / sizeof(anim_imgs[0]));
 const void *random_image = anim_imgs[random_index];
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
@@ -197,6 +199,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
 
