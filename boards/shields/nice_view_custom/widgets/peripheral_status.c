@@ -7,7 +7,7 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
-#include <lv_math.h>
+#include "lv_math.h"
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
@@ -196,5 +196,6 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
