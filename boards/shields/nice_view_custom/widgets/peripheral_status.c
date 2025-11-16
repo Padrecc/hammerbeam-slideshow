@@ -8,6 +8,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
 
+#include <stdio.h>
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -87,6 +89,22 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
+void rotateArr(int arr[], int n, int d) {
+    
+    // Repeat the rotation d times
+    for (int i = 0; i < d; i++) {
+      
+        // Right rotate the array by one position
+        int last = arr[n - 1];
+        for (int j = n - 1; j > 0; j--) {
+            arr[j] = arr[j - 1];
+        }
+        arr[0] = last;      
+    }
+}
+
+int d = rand() % 31;
+rotateArr(anim_imgs, 30, d);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -190,5 +208,6 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
     return 0;
 }
+
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
