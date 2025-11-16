@@ -98,7 +98,7 @@ void rotateArr(int arr[], int n, int d) {
         // Right rotate the array by one position
         int last = arr[n - 1];
         for (int j = n - 1; j > 0; j--) {
-            int arr[j] = arr[j - 1];
+            arr[j] = arr[j - 1];
         }
         int arr[0] = last;      
     }
@@ -213,6 +213,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
 
