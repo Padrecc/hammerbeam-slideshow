@@ -104,7 +104,9 @@ void rotateArr(int arr[], int n, int d) {
     }
 }
 
-rotateArr(anim_imgs, 30, 10);
+int n = 30;
+int d = 10;
+rotateArr(anim_imgs, n, d);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -211,5 +213,6 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
