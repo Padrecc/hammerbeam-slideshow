@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <lv_math.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
@@ -102,8 +103,7 @@ void rotateArr(lv_img_dsc_t *arr[], int n, int d) {
     }
 }
 
-srand(time(NULL));
-int n = rand();
+int n = lv_rand(0,29);
 //int n = 30;
 int d = 10;
 void rotateArr(anim_imgs, n, d);
