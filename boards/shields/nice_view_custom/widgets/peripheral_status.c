@@ -102,7 +102,9 @@ void rotateArr(lv_img_dsc_t *arr[], int n, int d) {
     }
 }
 
-int n = 30;
+srand(time(NULL));
+int n = rand();
+//int n = 30;
 int d = 10;
 void rotateArr(anim_imgs, n, d);
 
@@ -211,6 +213,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
 
