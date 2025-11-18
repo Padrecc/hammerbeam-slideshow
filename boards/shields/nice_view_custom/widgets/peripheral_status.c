@@ -91,9 +91,9 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
-void rotateArr(lv_img_dsc_t *arr[], int n, uint32_t d) {
-    for (int i = 0; i < d; i++) {
-        int first = arr[0];
+void rotateArr(const lv_img_dsc_t *arr[], int n, uint32_t d) {
+    for (uint32_t i = 0; i < d; i++) {
+        const lv_img_dsc_t *first = arr[0];
         for (int j = 0; j < n - 1; j++) {
             arr[j] = arr[j + 1];
         }
@@ -105,10 +105,9 @@ uint32_t d;
 
 void peripheral_status_init(void) {
     d = sys_rand32_get() % 30;
+    int n = 30;
+    rotateArr(anim_imgs, n, d); // rotate after d is set
 }
-
-int n = 30;
-void rotateArr(anim_imgs, n, d);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
