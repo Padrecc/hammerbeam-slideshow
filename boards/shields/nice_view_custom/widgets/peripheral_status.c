@@ -103,7 +103,12 @@ void rotateArr(lv_img_dsc_t *arr[], uint32_t n, int d) {
     }
 }
 
-uint32_t n = sys_rand32_get() % 31;
+uint32_t n;
+
+void peripheral_status_init(void) {
+    n = sys_rand32_get() % 31;
+}
+
 //int n = 30;
 int d = 10;
 void rotateArr(anim_imgs, n, d);
