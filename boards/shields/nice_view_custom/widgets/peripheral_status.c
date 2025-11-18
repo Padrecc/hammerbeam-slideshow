@@ -103,7 +103,7 @@ void rotateArr(const lv_img_dsc_t *arr[], int n, uint32_t d) {
 
 uint32_t d;
 
-void shuffle_init(void) {
+void anim_imgs_shift_init(void) {
     d = sys_rand32_get() % 30;
     int n = 30;
     rotateArr(anim_imgs, n, d); // rotate after d is set
@@ -197,7 +197,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
-    shuffle_init();
+    anim_imgs_shift_init();
 
     lv_obj_t * art = lv_animimg_create(widget->obj);
     lv_obj_center(art);
