@@ -8,6 +8,9 @@
 #include <zephyr/kernel.h>
 #include <zephyr/random/random.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -87,6 +90,23 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
+void rotateArr(const lv_img_dsc_t *arr[], int n, uint32_t d) {
+    const lv_img_dsc_t *tmp[n];
+    for (int i = 0; i < n; i++) {
+        tmp[i] = arr[(i + d) % n];
+    }
+    for (int i = 0; i < n; i++) {
+        arr[i] = tmp[i];
+    }
+}
+
+uint32_t d;
+
+void anim_imgs_shift_init(void) {
+    d = sys_rand32_get() % 30;
+    int n = 30;
+    rotateArr(anim_imgs, n, d); // rotate after d is set
+}
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -176,6 +196,8 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
+    anim_imgs_shift_init();
+    
     lv_obj_t * art = lv_animimg_create(widget->obj);
     lv_obj_center(art);
     lv_animimg_set_src(art, (const void **) anim_imgs, 30);
@@ -190,5 +212,6 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
     return 0;
 }
+
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
