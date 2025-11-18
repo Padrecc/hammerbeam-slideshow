@@ -91,7 +91,7 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
-void rotateArr(lv_img_dsc_t *arr[], int n, int d) {
+void rotateArr(lv_img_dsc_t *arr[], uint32_t n, int d) {
     for (int i = 0; i < d; i++) {
       
         // Left rotate the array by one position
@@ -103,7 +103,7 @@ void rotateArr(lv_img_dsc_t *arr[], int n, int d) {
     }
 }
 
-int n = sys_rand32_get() % 31;
+uint32_t n = sys_rand32_get() % 31;
 //int n = 30;
 int d = 10;
 void rotateArr(anim_imgs, n, d);
