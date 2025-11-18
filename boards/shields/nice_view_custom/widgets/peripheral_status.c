@@ -90,13 +90,16 @@ const lv_img_dsc_t *anim_imgs[] = {
     &hammerbeam30,
 };
 
-void rotateArr(lv_img_dsc_t arr, int d, int n) {
-    d %= n;
-    lv_img_dsc_t *ranim_imgs[n];
-    for (int i = 0; i < n - d; i++)
-        ranim_imgs[i] = arr[d + i];
-    for (int i = 0; i < d; i++)
-        ranim_imgs[n - d + i] = arr[i];
+void rotateArr(lv_img_dsc_t *arr[], int n, int d) {
+    for (int i = 0; i < d; i++) {
+      
+        // Left rotate the array by one position
+        int first = arr[0];
+        for (int j = 0; j < n - 1; j++) {
+            arr[j] = arr[j + 1];
+        }
+        arr[n - 1] = first;
+    }
 }
 
 int n = 30;
@@ -208,6 +211,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
 
 
