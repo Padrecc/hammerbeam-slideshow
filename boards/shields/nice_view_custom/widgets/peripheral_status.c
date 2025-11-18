@@ -88,6 +88,10 @@ const lv_img_dsc_t *anim_imgs[] = {
 };
 
 void rotateArr(const lv_img_dsc_t *arr[], int n, uint32_t d) {
+    if (n <= 1) return;
+    d = d % n;
+    if (d == 0) return;
+    
     const lv_img_dsc_t *tmp[n];
     for (int i = 0; i < n; i++) {
         tmp[i] = arr[(i + d) % n];
@@ -100,9 +104,9 @@ void rotateArr(const lv_img_dsc_t *arr[], int n, uint32_t d) {
 uint32_t d;
 
 void anim_imgs_shift_init(void) {
-    d = sys_rand32_get() % 30;
-    int n = 30;
-    rotateArr(anim_imgs, n, d); // rotate after d is set
+    int n = sizeof(anim_imgs) / sizeof(anim_imgs[0]);
+    d = sys_rand32_get() % n;
+    rotateArr(anim_imgs, n, d);
 }
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
@@ -212,4 +216,5 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
+
 
